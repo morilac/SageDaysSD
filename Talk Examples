@@ -1,0 +1,16 @@
+D=ScatteringDiagram([SDWall((1,0)),SDWall((0,1)),SDWall((0,1),point=(0,-1))])
+D.draw()
+
+for i in range(2):
+    D.improve()
+    D.draw()
+
+D=ScatteringDiagram([SDWall((1,0)),SDWall((0,1)),SDWall((0,1),point=(0,-1)),SDWall((1,0),point=(2,0))])
+D.draw()
+for i in range(3):
+    D.improve(draw=True)
+
+Table.diagrams[(2,2)].draw()
+
+Table.mtable((2,2),16,verbose=True)
+
