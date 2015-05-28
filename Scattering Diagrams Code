@@ -1,9 +1,17 @@
 class SDWall:
-#SDWall creates an object which encodes a wall inside a 2-dimensional scattering diagram with B=J.
-#n: A tuple of integers normal to the wall
-#source: None if the wall is a line, or a tuple describing the point of origin of the wall if it is a ray
-#d: An integer counting how many copies of the wall are being described
-
+    """
+        SDWall creates an object which encodes a wall inside a 2-dimensional scattering diagram with B=J.
+        
+        n: A tuple of integers normal to the wall
+        source: None if the wall is a line, or a tuple describing the point of origin of the wall if it is a ray
+        multi: An integer counting how many copies of the wall are being described
+        
+        Examples:
+        sage: SDWall((0,1))
+        A line through the point (0, 0) with normal vector (0, 1)
+        sage: SDWall((1,1),point=(0,-1),d=3)
+        A line through the point (3, 0.600000000000000) with normal vector (1, 1) and multiplicity 3
+    """
     def __init__(self,n,point=(0,0),d=1,source=None):
         self.source=source;
         self.is_ray=(source!=None);
@@ -20,12 +28,21 @@ class SDWall:
         #offset is the value of the normal covector on the source point; it is used by collision computations
         self.offset=n[0]*point[0]+n[1]*point[1];#+eps*random();
         #if the gcd>1, the support of the wall is perturbed by a small amount.  The magnitude of this perturbation can be controlled with the value of self.perturb.
-        self.perturb=10^(-8);
+        self.perturb=10^(-6);
         if self.gcd==1:
             self.nreal=self.n;
         else:
             self.theta=uniform(0,mideps);
             self.nreal=(float(cos(self.theta)*n[0]-sin(self.theta)*n[1]),float(sin(self.theta)*n[0]+cos(self.theta)*n[1]));
+
+    def __repr__(self):
+        if self.is_ray:
+            output = "An outgoing ray starting at "+str(self.point)+" with normal vector "+ str(self.n)
+        else:
+            output = "A line through the point "+str(self.point)+" with normal vector "+ str(self.n)
+        if self.d!=1:
+            output += " and multiplicity "+str(self.d);
+        return output
 
     def draw(self,xmin,xmax,ymin,ymax):
     #draw() returns a graphics object depicting the wall in the specified range
