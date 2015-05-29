@@ -10,6 +10,16 @@ D.draw()
 for i in range(3):
     D.improve(draw=True)
 
-Table.diagrams[(2,2)].draw()
+DefaultTable.diagrams[(2,2)].draw()
 
-Table.mtable((2,2),16,verbose=True)
+DefaultTable.mtable((2,2),16,verbose=True)
+
+D=ScatteringDiagram([SDWall((1,0)),SDWall((0,1),point=(0,-1)),SDWall((0,1),point=(0,-3)),SDWall((0,1)),SDWall((1,0),point=(2.23,0)),SDWall((1,0),point=(5.3,0))])
+D.draw()
+for i in range(3):
+    D.improve(verbose=True)
+D.draw()
+
+DefaultTable.mtable((3,3),8)
+
+DefaultTable.diagrams[(3,3)].draw()
