@@ -12,9 +12,4 @@ for i in range(3):
 
 Table.diagrams[(2,2)].draw()
 
-
-
-
-
 Table.mtable((2,2),16,verbose=True)
-
