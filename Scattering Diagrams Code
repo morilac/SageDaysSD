@@ -94,10 +94,11 @@ class SDWall:
             return None;
 
 class SDVertex:
-#SDVertex(point,w1,w2) creates an object which encodes the collision vertex betweent two SDWalls
-#point: a tuple denoting the location of the collision.
-#w1,w2: Two SDWalls encoding the walls which define the collision.
-
+    """
+        SDVertex(point,w1,w2) creates an object which encodes the collision vertex betweent two SDWalls.  Intended to be created by SDWall.collide().
+        point: a tuple denoting the location of the collision.
+        w1,w2: Two SDWalls encoding the walls which define the collision.
+    """
     def __init__(self,point,w1,w2):
         self.point=point;
         #switches order of defining rays, to ensure cross product is positive
@@ -161,8 +162,14 @@ class SDVertex:
             return point(self.point,marker='o',markeredgecolor='red');
 
 class ScatteringDiagram():
-#ScatteringDiagram(walls) creates an object which collects several walls into a scattering diagram.
-#walls: a list of SDWalls comprising the scattering diagram
+    """
+        ScatteringDiagram(walls) creates an object which collects several walls into a scattering diagram.
+        
+        walls: a list of SDWalls comprising the scattering diagram
+        
+        Example:
+        ScatteringDiagram([SDWall((1,0)),SDWall((0,1)),SDWall((0,1),point=(0,-1))])
+    """
 
     def __init__(self,walls):
         self.walls = walls;
@@ -222,12 +229,10 @@ class ScatteringDiagram():
         if draw:
             return self.draw()
 
-    #def cwpath(self,m,order=self.order):
-        #cwpath() computes the parallel transport of argument along a path from the all-positive chamber to the all-negative chamber which travels clockwise
-
 class SDTable():
-#SDTable() initializes an object containing a dictionary of elementary scattering diagrams, for the purpose of looking up multiplicities in collisions
-
+    """
+        SDTable() initializes an object containing a dictionary of elementary scattering diagrams, for the purpose of looking up multiplicities in collisions
+    """
     def __init__(self):
         self.diagrams= {};
     def multiplicity(self,d,n,verbose=False):
@@ -241,7 +246,7 @@ class SDTable():
             self.diagrams[d]=ScatteringDiagram([SDWall((0,1),point=(0,-random())),SDWall((0,1),d=d[1]-1),SDWall((1,0),d=d[0])]);
             if verbose:
                 print "Table "+str(d)+" created";
-        #checks if the desired diagram has high enough order to produce desired multiplicity
+        #checks if the desired diagram has high enough order to produce the desired multiplicity
         while self.diagrams[d].order<n[0]+n[1]:
             if verbose:
                 print "Attempting to improve "+str(d)+" to order "+str(self.diagrams[d].order+1);
@@ -255,6 +260,7 @@ class SDTable():
             return 0;
 
     def mtable(self,d,ord,verbose=False):
+        #mtable prints a table of the multiplicities of the walls in the model scattering diagram d, up to order ord.
         self.multiplicity(d,(1,ord-1),verbose=verbose);
         for i in range(ord+1):
             print [Table.multiplicity(d,(ord-i,j)) for j in range(0,i+1)];
