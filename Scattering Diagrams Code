@@ -32,7 +32,7 @@ class SDWall:
         if self.gcd==1:
             self.nreal=self.n;
         else:
-            self.theta=uniform(0,mideps);
+            self.theta=uniform(0,self.perturb);
             self.nreal=(float(cos(self.theta)*n[0]-sin(self.theta)*n[1]),float(sin(self.theta)*n[0]+cos(self.theta)*n[1]));
 
     def __repr__(self):
@@ -45,9 +45,9 @@ class SDWall:
         return output
 
     def draw(self,xmin,xmax,ymin,ymax):
-    """
-        draw() returns a graphics object depicting the wall in the specified range
-    """
+        """
+            draw() returns a graphics object depicting the wall in the specified range
+        """
         wallcolor=(1-1/float(self.d),0,1/float(self.d));
         if self.is_ray:
             if xmin>self.point[0] or xmax<self.point[0] or ymin>self.point[1] or ymax<self.point[1]:
@@ -73,9 +73,9 @@ class SDWall:
             return line([(self.point[0]+t1*self.n[1],self.point[1]-t1*self.n[0]),(self.point[0]+t2*self.n[1],self.point[1]-t2*self.n[0])],rgbcolor=wallcolor);
 
     def collide(self,wall):
-    """
-        collide() inputs an SDWall, outputs a new SDVertex at the common intersection, or None there is no such intersection (or the walls are parallel)
-    """
+        """
+            collide() inputs an SDWall, outputs a new SDVertex at the common intersection, or None there is no such intersection (or the walls are parallel)
+        """
         det=self.n[0]*wall.n[1]-self.n[1]*wall.n [0];
         detreal=self.nreal[0]*wall.nreal[1]-self.nreal[1]*wall.nreal[0];
         #to prevent numerical error from creating incorrect collisions, we require that the walls intersect by a minimum amount eps.
@@ -123,9 +123,9 @@ class SDVertex:
         self.aincrement=(self.w2.order/self.ordergcd,-self.w1.order/self.ordergcd);
 
     def improve(self,verbose=False):
-    """
-        improve() increases the order of the vertex, and returns a list of walls required to increase the order
-    """
+        """
+            improve() increases the order of the vertex, and returns a list of walls required to increase the order
+        """
         if self.nextorder!=100000:
             newwalls=[];
             if self.nextorder==(self.w1.order+self.w2.order):
@@ -162,9 +162,9 @@ class SDVertex:
             return newwalls;
 
     def draw(self):
-    """
-        draw() returns a graphics object depicting the vertex, which is blue if the vertex is consistent and red otherwise
-    """
+        """
+            draw() returns a graphics object depicting the vertex, which is blue if the vertex is consistent and red otherwise
+        """
         if self.nextorder>(100000-10):
             return point(self.point,marker='o',markeredgecolor='blue');
         else:
@@ -177,7 +177,8 @@ class ScatteringDiagram():
         walls: a list of SDWalls comprising the scattering diagram
 
         Example:
-        ScatteringDiagram([SDWall((1,0)),SDWall((0,1)),SDWall((0,1),point=(0,-1))])
+        sage: ScatteringDiagram([SDWall((1,0)),SDWall((0,1)),SDWall((0,1),point=(0,-1))])
+        A scattering diagram in R^2 with 3 walls and 2 vertices
     """
 
     def __init__(self,walls):
@@ -200,12 +201,12 @@ class ScatteringDiagram():
                 self.multiplicities[wall.n]=wall.d;
 
     def __repr__(self):
-        self.draw()
+        return "A scattering diagram in R^2 with "+str(len(self.walls))+" walls and "+str(len(self.vertices))+" vertices"
 
     def draw(self):
-    """
-        draw() produces a plot with all of the consituent walls and vertices, large enough to fit all of the vertices
-    """
+        """
+            draw() produces a plot with all of the consituent walls and vertices, large enough to fit all of the vertices
+        """
         #the lower right corner of the plot will be right and below each of the vertices
         xmin=min([vertex.point[0]-1 for vertex in self.vertices]);
         xmax=max([vertex.point[0]+1 for vertex in self.vertices]);
@@ -214,9 +215,9 @@ class ScatteringDiagram():
         return plot([vertex.draw() for vertex in self.vertices]+[wall.draw(xmin,xmax,ymin,ymax) for wall in self.walls],aspect_ratio=1,axes=False);
 
     def improve(self,verbose=False,draw=False):
-    """
-        improve() attempts to increases the order of the scattering diagram by 1
-    """
+        """
+            improve() attempts to increases the order of the scattering diagram by 1
+        """
         if self.order!=100000:
             for vertex in self.vertices:
                 #use vertex.improve() to find rays that must be added at that vertex
@@ -253,12 +254,12 @@ class SDTable():
         self.diagrams= {};
 
     def multiplicity(self,d,n,verbose=False):
-    """
-        multiplicity() looks up the desired multiplicity, and creates or improves the table as necessary
+        """
+            multiplicity() looks up the desired multiplicity, and creates or improves the table as necessary
 
-        d: a tuple which determines which diagram is being considered
-        n: the normal of the wall whose multiplicity is being considered
-    """
+            d: a tuple which determines which diagram is being considered
+            n: the normal of the wall whose multiplicity is being considered
+        """
         #first, the inputs are switched if decreasing
         if d[0]>d[1]:
             d=(d[1],d[0]);
@@ -282,23 +283,23 @@ class SDTable():
             return 0;
 
     def mtable(self,d,ord,verbose=False):
-    """
-        mtable() prints a table of the multiplicities of the walls in the model scattering diagram d, up to order ord.
+        """
+            mtable() prints a table of the multiplicities of the walls in the model scattering diagram d, up to order ord.
 
-        d: a tuple which determines which diagram is being considered
-        ord: the minimum desired order of the diagram.  If the current order is larger than ord, then the larger order is used.
-    """
+            d: a tuple which determines which diagram is being considered
+            ord: the minimum desired order of the diagram.  If the current order is larger than ord, then the larger order is used.
+        """
         self.multiplicity(d,(1,ord-1),verbose=verbose);
         for i in range(ord+1):
             print [Table.multiplicity(d,(ord-i,j)) for j in range(0,i+1)];
 
     def GHKKTerm(self,d,n,denom=1):
-    """
-        GHKKTerm() computes the scattering term (in the sense of GHKK) in the model scattering diagram d, on the ray with normal n.
+        """
+            GHKKTerm() computes the scattering term (in the sense of GHKK) in the model scattering diagram d, on the ray with normal n.
 
-        d: a tuple which determines which diagram is being considered
-        n: the normal of the wall whose GHKK term is being considered
-    """
+            d: a tuple which determines which diagram is being considered
+            n: the normal of the wall whose GHKK term is being considered
+        """
         R.<x>=PowerSeriesRing(ZZ)
         prec=floor((self.diagrams[d].order)/(n[0]+n[1]))+1
         L=[(1+x^i+O(x^prec))^(Table.multiplicity(d,(i*n[0],i*n[1]))/denom) for i in range(prec)];
