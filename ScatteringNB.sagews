@@ -1,3 +1,4 @@
+︠5eb3254e-f571-4a56-b517-004312f2cb67s︠
 class SDTable():
     """
         SDTable() initializes an object containing a dictionary of model scattering diagrams, for the purpose of looking up multiplicities in collisions
@@ -313,3 +314,65 @@ class ScatteringDiagram():
                         print 'WARNING: A non-generic collision has occured at ' +str(v1.point)
         if draw:
             return self.draw()
+︡bb6ff854-ebc3-473e-989e-22b420143452︡
+︠d0fc569a-f4eb-45b6-a5eb-25c5182de982s︠
+SDWall((0,1))
+W=[SDWall((1,0)),SDWall((0,1)),SDWall((0,1),point=(0,-1))]
+W
+︡431ef2df-a50f-4bab-bdaf-e70b38051254︡{"stdout":"A line through the point (0, 0) with normal vector (0, 1)\n"}︡{"stdout":"[A line through the point (0, 0) with normal vector (1, 0), A line through the point (0, 0) with normal vector (0, 1), A line through the point (0, -1) with normal vector (0, 1)]\n"}︡
+︠5365fc6c-bdc5-43a2-ac87-e5197c267f88s︠
+D=ScatteringDiagram(W)
+D
+D.draw()
+︡d2415007-9ddf-4af3-a2fd-a772845ee8cc︡{"stdout":"A scattering diagram in R^2 with 3 walls and 2 vertices\n"}︡{"once":false,"file":{"show":true,"uuid":"04cea8b1-d792-4c8d-88cb-92a90ee0e641","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_Wvf31L.svg"}}︡{"html":"<div align='center'></div>"}︡
+︠5c3759dc-7e1a-487e-a0cc-feb42dd83569s︠
+for i in range(2):
+    D.improve(draw=True)
+︡8ced9d00-9b98-4169-a10b-f14db410d563︡{"once":false,"file":{"show":true,"uuid":"4de2193c-8a1b-4a0d-956f-a1a83f073fc3","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_KcNYbH.svg"}}︡{"html":"<div align='center'></div>"}︡{"once":false,"file":{"show":true,"uuid":"f19c7fca-66d9-4906-bece-1d725551c7a8","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_iAa9iC.svg"}}︡{"html":"<div align='center'></div>"}︡
+︠64be54dc-f3ee-4c04-bc43-72bfbf132da7s︠
+D=ScatteringDiagram([SDWall((1,0)),SDWall((0,1)),SDWall((0,1),point=(0,-1)),SDWall((1,0),point=(2,0))])
+D.draw()
+for i in range(4):
+    D.improve(draw=True)
+
+︡55613bf5-d625-412f-a9fc-9ec06f31ec6e︡{"once":false,"file":{"show":true,"uuid":"6697e5b2-9ba3-441c-99ac-513dc39779a0","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_R6HiL8.svg"}}︡{"html":"<div align='center'></div>"}︡{"once":false,"file":{"show":true,"uuid":"520394fd-ce90-42c1-a08b-6bff4e2ef1c0","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_sA11u9.svg"}}︡{"html":"<div align='center'></div>"}︡{"once":false,"file":{"show":true,"uuid":"c7eca7a2-c5f2-495a-b2e1-90f011921864","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_44aIeL.svg"}}︡{"html":"<div align='center'></div>"}︡{"once":false,"file":{"show":true,"uuid":"997039d6-870a-4884-aa8d-0dd74b4698d6","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_OTf1QK.svg"}}︡{"html":"<div align='center'></div>"}︡{"once":false,"file":{"show":true,"uuid":"45457d1e-71d0-44d8-8620-4b9cf0e133d2","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_PDmYhO.svg"}}︡{"html":"<div align='center'></div>"}︡
+︠20f39f1c-db12-4010-a2df-5088f9779bf0s︠
+DefaultTable.diagrams[(2,2)].draw()
+︡6f009cb6-c126-420a-8ddd-e3886b999c5f︡{"once":false,"file":{"show":true,"uuid":"2d18f724-e033-43a1-90ec-4fab0fd7dcbc","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_n2fLK3.svg"}}︡{"html":"<div align='center'></div>"}︡
+︠8c3f5ad1-b105-48de-9803-26b5d4ddc882s︠
+DefaultTable.mtable((2,2),16,verbose=True)
+︡cee3601d-1c78-4267-8b6a-ae5e377aa8a9︡{"stdout":"Attempting to improve model (2, 2) to order 4\nModel (2, 2) improved to order 4\nAttempting to improve model (2, 2) to order 5\nModel (2, 2) improved to order 5\nAttempting to improve model (2, 2) to order 6\nModel (2, 2) improved to order 6\nAttempting to improve model (2, 2) to order 7\nModel (2, 2) improved to order 7\nAttempting to improve model (2, 2) to order 8\nModel (2, 2) improved to order 8\nAttempting to improve model (2, 2) to order 9\nModel (2, 2) improved to order 9\nAttempting to improve model (2, 2) to order 10\nModel (2, 2) improved to order 10\nAttempting to improve model (2, 2) to order 11\nModel (2, 2) improved to order 11\nAttempting to improve model (2, 2) to order 12\nModel (2, 2) improved to order 12\nAttempting to improve model (2, 2) to order 13\nModel (2, 2) improved to order 13\nAttempting to improve model (2, 2) to order 14\nModel (2, 2) improved to order 14\nAttempting to improve model (2, 2) to order 15\nModel (2, 2) improved to order 15\nAttempting to improve model (2, 2) to order 16\nModel (2, 2) improved to order 16\n[0]\n[0, 0]\n[0, 0, 0]\n[0, 0, 0, 0]\n[0, 0, 0, 0, 0]\n[0, 0, 0, 0, 0, 0]\n[0, 0, 0, 0, 0, 0, 0]\n[0, 0, 0, 0, 0, 0, 0, 0]\n[0, 0, 0, 0, 0, 0, 0, 2, 4]\n[0, 0, 0, 0, 0, 0, 2, 0, 2, 0]\n[0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0]\n[0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0]\n[0, 0, 0, 2, 4, 2, 0, 0, 0, 0, 0, 0, 0]\n[0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0]\n[0, 2, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\n[2, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\n[0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\n"}︡
+︠c3f891e9-4226-4b87-ad77-90c783daaa2ds︠
+DefaultTable.diagrams[(2,2)].draw()
+︡a7565480-cd25-4700-bdf6-31fe2de24097︡{"once":false,"file":{"show":true,"uuid":"771d2ffa-aa6a-4683-ad63-1e5fd332fcff","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_Fu_hW5.svg"}}︡{"html":"<div align='center'></div>"}︡
+︠242fad72-4a8c-4e14-8af2-9b18f423c543s︠
+DefaultTable.mtable((2,3),6,verbose=True)
+︡de9337c6-4e9a-45a0-98c6-7e5dba7a1a75︡{"stdout":"Model (2, 3) created\nAttempting to improve model (2, 3) to order 2\nModel (2, 3) improved to order 2\nAttempting to improve model (2, 3) to order 3\nModel (2, 3) improved to order 3\nAttempting to improve model (2, 3) to order 4\nModel (1, 4) created\nAttempting to improve model (1, 4) to order 2\nModel (1, 4) improved to order 2\nAttempting to improve model (1, 4) to order 3\nModel (1, 3) created\nAttempting to improve model (1, 3) to order 2\nModel (1, 3) improved to order 2\nAttempting to improve model (1, 3) to order 3\nModel (1, 3) improved to order 3\nModel (1, 4) improved to order 3\nModel (2, 3) improved to order 4\nAttempting to improve model (2, 3) to order 5\nAttempting to improve model (1, 4) to order 4\nAttempting to improve model (1, 3) to order 4\nModel (1, 3) improved to order 4\nModel (1, 4) improved to order 4\nModel (2, 4) created\nAttempting to improve model (2, 4) to order 2\nModel (2, 4) improved to order 2\nAttempting to improve model (2, 4) to order 3\nModel (2, 4) improved to order 3\nModel (2, 3) improved to order 5\nAttempting to improve model (2, 3) to order 6\nAttempting to improve model (1, 4) to order 5\nAttempting to improve model (1, 3) to order 5\nModel (1, 3) improved to order 5\nModel (1, 4) improved to order 5\nAttempting to improve model (2, 4) to order 4\nModel (1, 6) created\nAttempting to improve model (1, 6) to order 2\nModel (1, 6) improved to order 2\nAttempting to improve model (1, 6) to order 3\nModel (1, 5) created\nAttempting to improve model (1, 5) to order 2\nModel (1, 5) improved to order 2\nAttempting to improve model (1, 5) to order 3\nModel (1, 5) improved to order 3\nModel (1, 6) improved to order 3\nModel (2, 4) improved to order 4\nModel (2, 3) improved to order 6\n[0]\n[0, 0]\n[0, 0, 0]\n[0, 0, 6, 18]\n[0, 3, 12, 14, 12]\n[2, 6, 6, 2, 0, 0]\n[0, 3, 0, 0, 0, 0, 0]\n"}︡
+︠31c96504-b470-4261-b701-c8f514a4e248s︠
+D=ScatteringDiagram([SDWall((1,0)),SDWall((0,1),point=(0,-1)),SDWall((0,1),point=(0,-3)),SDWall((0,1)),SDWall((1,0),point=(2.23,0)),SDWall((1,0),point=(5.3,0))])
+D.draw()
+for i in range(3):
+    D.improve(verbose=True)
+D.draw()
+︡37c0a3a9-2016-4515-98aa-f9a9f40745b0︡{"once":false,"file":{"show":true,"uuid":"49d17bf2-7ef4-43e2-b3b6-6cbb00704076","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_mLkt7i.svg"}}︡{"html":"<div align='center'></div>"}︡{"once":false,"file":{"show":true,"uuid":"fbc7ded7-dfb1-43dd-a8fe-ec7231161e37","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_yDFsRb.svg"}}︡{"html":"<div align='center'></div>"}︡
+︠f235ba42-418f-439f-be7f-6310ec80f223s︠
+DefaultTable.mtable((3,3),8)
+︡cf9ae76d-18d9-46cb-8ac5-648ea371ce9e︡{"stdout":"[0]"}︡{"stdout":"\n[0, 0]\n[0, 0, 0]\n[0, 0, 9, 204]\n[0, 0, 36, 204, 1044]\n[0, 3, 39, 162, 204, 204]\n[0, 9, 36, 39, 36, 9, 0]\n[3, 9, 9, 3, 0, 0, 0, 0]\n[0, 3, 0, 0, 0, 0, 0, 0, 0]\n"}︡
+︠dbaebb57-d70d-4081-ace3-f58da2a3a722s︠
+DefaultTable.diagrams[(3,3)].draw()
+︡b66f6232-231b-4f8c-b299-f30a613cbcb1︡{"once":false,"file":{"show":true,"uuid":"3fd482e5-81f6-4fe0-a4bc-2eb2168c8796","filename":"/projects/a377892b-9b6e-4a10-a2e1-c526b21c2e94/.sage/temp/compute1-us/24572/tmp_jOSVPQ.svg"}}︡{"html":"<div align='center'></div>"}︡
+︠4f894432-61d0-4459-bd9b-37070ad06f6bs︠
+DefaultTable.GHKKTerm((2,2),(1,1))
+DefaultTable.GHKKTerm((2,2),(1,1),denom=4)
+DefaultTable.GHKKTerm((3,3),(1,1),denom=9)
+︡5ec790cd-f533-47da-8cd7-1efdf19d091c︡{"stdout":"1 + 4*x + 10*x^2 + 20*x^3 + 35*x^4 + 56*x^5 + 84*x^6 + 120*x^7 + 165*x^8 + O(x^9)\n"}︡{"stdout":"1 + x + x^2 + x^3 + x^4 + x^5 + x^6 + x^7 + x^8 + O(x^9)\n"}︡{"stdout":"1 + x + 4*x^2 + 22*x^3 + 140*x^4 + O(x^5)\n"}︡
+︠333ea194-a328-4980-9983-87b32c4b9c1c︠
+
+
+
+
+
+
+
+
+
