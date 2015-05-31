@@ -1,6 +1,6 @@
 class SDTable():
     """
-        SDTable() initializes an object containing a dictionary of elementary scattering diagrams, for the purpose of looking up multiplicities in collisions
+        SDTable() initializes an object containing a dictionary of model scattering diagrams, for the purpose of looking up multiplicities in collisions
     """
     def __init__(self):
         self.diagrams= {};
@@ -58,10 +58,7 @@ class SDTable():
         R.<x>=PowerSeriesRing(ZZ)
         prec=floor((self.diagrams[d].order)/(n[0]+n[1]))+1
         L=[(1+x^i+O(x^prec))^(self.multiplicity(d,(i*n[0],i*n[1]))/denom) for i in range(prec)];
-        return reduce(product,L,1)
-
-def product(a,b):
-    return a*b;
+        return reduce(lambda a,b:a*b,L,1)
 
 DefaultTable=SDTable();
 
